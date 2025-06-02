@@ -1,47 +1,39 @@
-import {
-  useMatomo,
-} from '@datapunt/matomo-tracker-react';
+import { useMatomo } from "@datapunt/matomo-tracker-react";
 
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from "uuid";
 
-import React, { useEffect } from 'react';
-import type { Todo } from '../moudles/Todo';
-import TodoItem from './TodoItem/TodoItem';
-
-
+import React, { useEffect } from "react";
+import type { Todo } from "../moudles/Todo";
+import TodoItem from "./TodoItem/TodoItem";
 
 // Todo App Component
 export const TodoApp = () => {
   const [todos, setTodos] = React.useState<Todo[]>([]);
-  const [input, setInput] = React.useState('');
+  const [input, setInput] = React.useState("");
   const { trackPageView, trackEvent } = useMatomo();
 
   useEffect(() => {
-    trackPageView({ documentTitle: 'Todo List Page' });
-  }, [trackPageView]);
+    trackPageView({ documentTitle: "Todo List Page" });
+  }, []);
 
   const addTodo = () => {
     if (!input.trim()) return;
     const newTodo = { id: uuid(), text: input, completed: false };
     setTodos([...todos, newTodo]);
-    setInput('');
-
-    trackEvent({ category: 'Todo', action: 'Add', name: newTodo.text });
-    if (todos.length + 1 >= 5) {
-      // trackGoal({ id: 1 }); // assuming goal ID 1 is 'created 5 todos'
-    }
+    setInput("");
+    trackEvent({ category: "Todo", action: "Add", name: newTodo.text });
   };
 
   const toggleTodo = (id: string) => {
     setTodos(
-      todos.map(todo =>
+      todos.map((todo) =>
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
       )
     );
   };
 
   const deleteTodo = (id: string) => {
-    setTodos(todos.filter(todo => todo.id !== id));
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   return (
@@ -62,7 +54,7 @@ export const TodoApp = () => {
         </button>
       </div>
       <ul className="space-y-2">
-        {todos.map(todo => (
+        {todos.map((todo) => (
           <TodoItem
             key={todo.id}
             todo={todo}
