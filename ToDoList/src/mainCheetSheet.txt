@@ -1,0 +1,16 @@
+
+//line 6 
+import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
+import { MATOMO_URL } from "./assets/config.ts";
+
+const matomoInstance = createInstance({
+  urlBase: MATOMO_URL,
+  siteId: 1,
+  linkTracking: false, 
+});
+---------------------------------------------------------------------------------------------
+  //line 16
+    <MatomoProvider value={matomoInstance}>
+      <App />
+    </MatomoProvider>
+

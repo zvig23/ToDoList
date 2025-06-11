@@ -1,0 +1,11 @@
+//line 1 
+import { useMatomo } from "@datapunt/matomo-tracker-react";
+--------------------------------------------------------------------------------------------------
+//line 13
+  const { trackPageView, trackEvent } = useMatomo();
+  useEffect(() => {
+    trackPageView({ documentTitle: "Todo List Page" });
+  }, []);
+--------------------------------------------------------------------------------------------------
+//line 24
+  trackEvent({ category: "Todo", action: "Add", name: newTodo.text });

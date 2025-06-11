@@ -1,5 +1,3 @@
-import { useMatomo } from "@datapunt/matomo-tracker-react";
-
 import { v4 as uuid } from "uuid";
 
 import React, { useEffect } from "react";
@@ -10,18 +8,13 @@ import TodoItem from "./TodoItem/TodoItem";
 export const TodoApp = () => {
   const [todos, setTodos] = React.useState<Todo[]>([]);
   const [input, setInput] = React.useState("");
-  const { trackPageView, trackEvent } = useMatomo();
-
-  useEffect(() => {
-    trackPageView({ documentTitle: "Todo List Page" });
-  }, []);
 
   const addTodo = () => {
     if (!input.trim()) return;
     const newTodo = { id: uuid(), text: input, completed: false };
     setTodos([...todos, newTodo]);
     setInput("");
-    trackEvent({ category: "Todo", action: "Add", name: newTodo.text });
+
   };
 
   const toggleTodo = (id: string) => {

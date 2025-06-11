@@ -1,0 +1,6 @@
+//line 2 
+import { useMatomo } from "@datapunt/matomo-tracker-react";
+----------------------------------------------------------------------------------------------------------
+//line 5 
+const { enableLinkTracking } = useMatomo();
+enableLinkTracking();

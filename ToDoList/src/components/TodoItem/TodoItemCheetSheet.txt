@@ -1,0 +1,22 @@
+//line 1 
+import { useMatomo } from "@datapunt/matomo-tracker-react";
+--------------------------------------------------------------------------------------------------
+//line 11
+const { trackEvent } = useMatomo();
+--------------------------------------------------------------------------------------------------
+//line 16 
+trackEvent({
+  category: "Todo",
+  action: todo.completed ? "Uncomplete" : "Complete",
+  name: todo.text,
+});
+
+--------------------------------------------------------------------------------------------------
+//line 25
+trackEvent({
+  category: "Todo",
+  action: "Delete",
+  name: todo.text,
+});
+
+

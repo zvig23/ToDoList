@@ -1,4 +1,3 @@
-import { useMatomo } from "@datapunt/matomo-tracker-react";
 import type { Todo } from "../../moudles/Todo";
 
 interface TodoItemProps {
@@ -9,24 +8,13 @@ interface TodoItemProps {
 
 // Todo Item Component
 export const TodoItem = ({ todo, onToggle, onDelete }: TodoItemProps) => {
-  const { trackEvent } = useMatomo();
 
   const handleToggle = () => {
     onToggle(todo.id);
-    trackEvent({
-      category: "Todo",
-      action: todo.completed ? "Uncomplete" : "Complete",
-      name: todo.text,
-    });
   };
 
   const handleDelete = () => {
     onDelete(todo.id);
-    trackEvent({
-      category: "Todo",
-      action: "Delete",
-      name: todo.text,
-    });
   };
 
   return (
